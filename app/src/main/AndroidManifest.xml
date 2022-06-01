@@ -10,18 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RavivariBaazar">
         <activity
-            android:name=".baseActivity"
+            android:name=".activities.baseActivity"
             android:exported="false" />
         <activity
             android:name=".activities.RegisterActivity"
             android:exported="false"
-            android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="false"
-            android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity

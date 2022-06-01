@@ -1,15 +1,19 @@
 package com.example.ravivaribaazar.activities
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import com.example.ravivaribaazar.R
 import com.example.ravivaribaazar.databinding.ActivityRegisterBinding
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseAuth
 
 private lateinit var binding: ActivityRegisterBinding
 
@@ -38,8 +42,9 @@ class RegisterActivity : baseActivity() {
         }
 
         binding.RegisterButton.setOnClickListener {
-            Toast.makeText(this,"Button clicked",Toast.LENGTH_SHORT).show()
-            validateRegisterDetails()
+//            Toast.makeText(this,"Button clicked",Toast.LENGTH_SHORT).show()
+//            validateRegisterDetails()
+              registerUser()
         }
     }
 
@@ -98,12 +103,48 @@ class RegisterActivity : baseActivity() {
                 false
             }
             else -> {
-                showErrorSnackBar(resources.getString(R.string.register_successfull),false)
+//                showErrorSnackBar(resources.getString(R.string.register_successfull),false)
                 true
             }
         }
     }
 
+    private fun registerUser()
+    {
+        // check if entries are valid or not
+        if(validateRegisterDetails())
+        {
+            showProgressDialog(resources.getString(R.string.please_wait))
+
+            val email = binding.etEmailID.text.toString().trim{it <= ' '}
+            val password = binding.etPassword.text.toString().trim{it <= ' '}
+
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(
+                    OnCompleteListener { task ->
+
+                        hideProgressDialog()
+
+                        if(task.isSuccessful)
+                        {
+                            val firebaseUser = task.result!!.user!!
+
+//                            Log.d(TAG, "registerUser: ${firebaseUser.uid}" )
+                            showErrorSnackBar("You are registered successfully\nYour id is ${firebaseUser.uid}",false)
+
+                            FirebaseAuth.getInstance().signOut()
+                            finish()
+                        }
+                        else
+                        {
+//                            Log.w(TAG, "registerUser: fail",task.exception)
+                            showErrorSnackBar(task.exception?.message.toString(),true)
+//                            Toast.makeText(this,"Authentication failed",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
+        }
+    }
 }
 
 

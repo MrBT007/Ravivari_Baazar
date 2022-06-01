@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "98007952855",
+    "project_id": "ravivari-baazar",
+    "storage_bucket": "ravivari-baazar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98007952855:android:30dda8c436ca2e847eef92",
+        "android_client_info": {
+          "package_name": "com.example.ravivaribaazar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "98007952855-c0l2d2728jintiufdkumc6s7h4opbdv6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7ZdXeic0mhO3pQC8Wg--JMuSh3D56Y2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "98007952855-c0l2d2728jintiufdkumc6s7h4opbdv6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

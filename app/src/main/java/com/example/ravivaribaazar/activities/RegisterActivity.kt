@@ -10,14 +10,18 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.ravivaribaazar.R
 import com.example.ravivaribaazar.databinding.ActivityRegisterBinding
+import com.example.ravivaribaazar.firestore.FirestoreClass
+import com.example.ravivaribaazar.models.User
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 
 private lateinit var binding: ActivityRegisterBinding
 
 class RegisterActivity : baseActivity() {
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -32,13 +36,15 @@ class RegisterActivity : baseActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-//        setupActionBar()
+        val attrib = window.attributes
+        attrib.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        setupActionBar()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         var registertologin: TextView = findViewById(R.id.logintoregister_register)
+
         registertologin.setOnClickListener()
         {
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+            onBackPressed()
         }
 
         binding.RegisterButton.setOnClickListener {
@@ -60,15 +66,7 @@ class RegisterActivity : baseActivity() {
         setSupportActionBar(binding.toolbarRegisterActivity)
         binding.toolbarRegisterActivity.setNavigationOnClickListener { onBackPressed() }
     }
-    private var pressedTime = 0L
-    override fun onBackPressed() {
-        if (pressedTime + 2000 > System.currentTimeMillis()) {
-            finish()
-        } else {
-            Toast.makeText(baseContext, "Press back again to exit", Toast.LENGTH_SHORT).show()
-        }
-        pressedTime = System.currentTimeMillis()
-    }
+
 
     private fun validateRegisterDetails(): Boolean {
         return when
@@ -122,21 +120,26 @@ class RegisterActivity : baseActivity() {
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(
                     OnCompleteListener { task ->
-
-                        hideProgressDialog()
-
                         if(task.isSuccessful)
                         {
                             val firebaseUser = task.result!!.user!!
-
+                            val user = User(
+                                firebaseUser.uid,
+                                binding.etFirstName.text.toString().trim { it <= ' ' },
+                                binding.etLastName.text.toString().trim { it <= ' ' },
+                                email,
+                                password)
 //                            Log.d(TAG, "registerUser: ${firebaseUser.uid}" )
-                            showErrorSnackBar("You are registered successfully\nYour id is ${firebaseUser.uid}",false)
 
-                            FirebaseAuth.getInstance().signOut()
-                            finish()
+                            FirestoreClass().registerUser(this,user)
+//                            showErrorSnackBar("You are registered successfully\nYour id is ${firebaseUser.uid}",false)
+
+//                            FirebaseAuth.getInstance().signOut()
+//                            finish()
                         }
                         else
                         {
+                            hideProgressDialog()
 //                            Log.w(TAG, "registerUser: fail",task.exception)
                             showErrorSnackBar(task.exception?.message.toString(),true)
 //                            Toast.makeText(this,"Authentication failed",Toast.LENGTH_SHORT).show()
@@ -144,6 +147,11 @@ class RegisterActivity : baseActivity() {
                     }
                 )
         }
+    }
+    fun userRegisteredSuccessfully()
+    {
+        hideProgressDialog()
+        Toast.makeText(this, "You are Registered Successfully", Toast.LENGTH_SHORT).show()
     }
 }
 

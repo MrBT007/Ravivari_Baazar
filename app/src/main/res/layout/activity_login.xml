@@ -15,36 +15,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/auth_screen_background" />
         <ImageView
             android:layout_width="@dimen/logo_width_size"
             android:layout_height="@dimen/logo_Height_size"
             android:layout_gravity="center"
             android:scaleType="fitCenter"
-            android:src="@drawable/logo"
-            app:tint="@color/colorWhite"/>
+            android:src="@drawable/logo" />
     </FrameLayout>
-    
+
     <com.example.ravivaribaazar.utils.RBTextViewBold
         android:id="@+id/login_title_loginActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:text="Login"
+        android:layout_marginTop="15dp"
+        android:text="LOGIN"
         android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/title_text_size"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fl_header_image"/>
 
     <com.example.ravivaribaazar.utils.RBTextView
-        android:id="@+id/textView"
+        android:id="@+id/forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -55,25 +47,27 @@
         android:textColorHint="@color/black"
         android:textSize="@dimen/forgot_password_text_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fill_password_loginActivity" />
+        app:layout_constraintTop_toBottomOf="@+id/til_password_loginActivity" />
 
     <com.example.ravivaribaazar.utils.RBButton
-        android:id="@+id/loginButton_LoginActivity"
+        android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/button_background"
-        android:text="LOGIN"
         android:foreground="?attr/selectableItemBackground"
         android:gravity="center"
         android:paddingTop="@dimen/button_padding"
         android:paddingBottom="@dimen/button_padding"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="LOGIN"
+        android:textColor="@color/white"
         android:textSize="@dimen/button_text_size"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgot_password" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -84,7 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginButton_LoginActivity">
+        app:layout_constraintTop_toBottomOf="@id/loginButton">
 
         <com.example.ravivaribaazar.utils.RBTextView
             android:layout_width="wrap_content"
@@ -110,7 +104,7 @@
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fill_email_loginActivity"
+        android:id="@+id/til_email_loginActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -122,6 +116,7 @@
         app:layout_constraintTop_toBottomOf="@+id/login_title_loginActivity">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_emailLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -131,7 +126,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fill_password_loginActivity"
+        android:id="@+id/til_password_loginActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -140,9 +135,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/fill_email_loginActivity">
+        app:layout_constraintTop_toBottomOf="@+id/til_email_loginActivity">
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_passwordLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"

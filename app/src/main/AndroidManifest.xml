@@ -10,8 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RavivariBaazar">
         <activity
+            android:name=".activities.ForgotPassword"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar"/>
+        <activity
             android:name=".activities.baseActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar"/>
         <activity
             android:name=".activities.RegisterActivity"
             android:exported="false"

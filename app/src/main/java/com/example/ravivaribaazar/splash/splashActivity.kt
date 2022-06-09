@@ -9,6 +9,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.annotation.RequiresApi
 import com.example.ravivaribaazar.MainActivity
 import com.example.ravivaribaazar.R
 import com.example.ravivaribaazar.activities.LoginActivity
@@ -16,10 +17,14 @@ import com.example.ravivaribaazar.databinding.ActivitySplashBinding
 
 class splashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         supportActionBar?.hide() // hide action bar
+
+        val attrib = window.attributes
+        attrib.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
 
         // hide status bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

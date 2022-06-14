@@ -5,12 +5,15 @@
       <map>
         <entry key="..\:/RavivariBaazar/app/src/main/res/drawable/box_border.xml" value="0.27291666666666664" />
         <entry key="..\:/RavivariBaazar/app/src/main/res/drawable/button_background.xml" value="0.27291666666666664" />
+        <entry key="..\:/RavivariBaazar/app/src/main/res/drawable/drawable_gender_tab_text_color_selector.xml" value="0.2675" />
+        <entry key="..\:/RavivariBaazar/app/src/main/res/drawable/drawble_gender_tab_selector.xml" value="0.2675" />
         <entry key="..\:/RavivariBaazar/app/src/main/res/layout/activity_base.xml" value="0.4317708333333333" />
         <entry key="..\:/RavivariBaazar/app/src/main/res/layout/activity_forgotpassword.xml" value="0.264" />
         <entry key="..\:/RavivariBaazar/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/RavivariBaazar/app/src/main/res/layout/activity_main.xml" value="0.24270833333333333" />
-        <entry key="..\:/RavivariBaazar/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/RavivariBaazar/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/RavivariBaazar/app/src/main/res/layout/activity_splash.xml" value="0.25677083333333334" />
+        <entry key="..\:/RavivariBaazar/app/src/main/res/layout/activity_user_profile.xml" value="0.264" />
         <entry key="..\:/RavivariBaazar/app/src/main/res/layout/dialog_progress.xml" value="0.264" />
         <entry key="..\:/RavivariBaazar/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1453125" />
       </map>

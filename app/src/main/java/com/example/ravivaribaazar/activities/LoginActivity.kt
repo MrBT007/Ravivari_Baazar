@@ -23,8 +23,10 @@ import androidx.appcompat.widget.ThemedSpinnerAdapter
 import com.example.ravivaribaazar.MainActivity
 import com.example.ravivaribaazar.firestore.FirestoreClass
 import com.example.ravivaribaazar.models.User
+import com.example.ravivaribaazar.utils.Constants
 import com.example.ravivaribaazar.utils.RBButton
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import io.grpc.LoadBalancer
 
 @SuppressLint("StaticFieldLeak")
@@ -126,7 +128,15 @@ class LoginActivity : baseActivity() {
         Log.i("Last Name:",user.lastName)
         Log.i("Email:",user.email)
 
-        startActivity(Intent(this,MainActivity::class.java))
+        if(user.profileCompleted == 0)
+        {
+            val intent = Intent(this,UserProfileActivity::class.java)
+            intent.putExtra(Constants.EXTRA_USER_DETAILS,user)
+            startActivity(intent)
+        }
+        else {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
         finish()
     }
 

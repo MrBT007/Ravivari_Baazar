@@ -7,6 +7,16 @@
     tools:context=".splash.splashActivity"
     android:background="@drawable/background">
 
+    <ImageView
+        android:layout_width="@dimen/logo_width_size"
+        android:layout_height="@dimen/logo_Height_size"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toTopOf="@+id/tv_app_name"
+        app:layout_constraintEnd_toEndOf="@+id/tv_app_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_app_name"
+        app:layout_constraintTop_toTopOf="parent" />
     <com.example.ravivaribaazar.utils.RBTextViewBold
         android:id="@+id/tv_app_name"
         android:layout_width="wrap_content"

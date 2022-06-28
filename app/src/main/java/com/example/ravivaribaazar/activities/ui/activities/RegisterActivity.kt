@@ -1,11 +1,8 @@
-package com.example.ravivaribaazar.activities
+package com.example.ravivaribaazar.activities.ui.activities
 
-import android.content.ContentValues.TAG
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.TextView
@@ -20,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 private lateinit var binding: ActivityRegisterBinding
 
-class RegisterActivity : baseActivity() {
+class RegisterActivity : BaseActivity() {
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

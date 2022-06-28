@@ -2,35 +2,46 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ravivaribaazar">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.RavivariBaazar">
         <activity
-            android:name=".activities.UserProfileActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Design.NoActionBar"  />
+            android:name=".activities.ui.activities.SettingsActivity"
+            android:theme="@style/Theme.Design.NoActionBar"
+            android:exported="false" />
         <activity
-            android:name=".activities.ForgotPassword"
+            android:name=".activities.ui.activities.DashboardActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Design.NoActionBar" />
+            android:label="@string/title_activity_dashboard" />
         <activity
-            android:name=".activities.baseActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Design.NoActionBar" />
-        <activity
-            android:name=".activities.RegisterActivity"
+            android:name=".activities.ui.activities.UserProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".activities.ui.activities.ForgotPassword"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar" />
+        <activity
+            android:name=".activities.ui.activities.BaseActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar" />
+        <activity
+            android:name=".activities.ui.activities.RegisterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar" />
+        <activity
+            android:name=".activities.ui.activities.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.NoActionBar" />

@@ -1,18 +1,19 @@
-package com.example.ravivaribaazar.activities
+package com.example.ravivaribaazar.activities.ui.activities
 
 import android.annotation.SuppressLint
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.ravivaribaazar.R
 import com.google.android.material.snackbar.Snackbar
 
-open class baseActivity : AppCompatActivity() {
-
+open class BaseActivity : AppCompatActivity() {
     private lateinit var mProgressDialog: Dialog
-
+    private var doubleBackToExitPressedOnce = false
     @SuppressLint("ShowToast")
     fun showErrorSnackBar(message: String, error: Boolean) {
         val snackbar =
@@ -52,5 +53,19 @@ open class baseActivity : AppCompatActivity() {
 
     fun hideProgressDialog(){
         mProgressDialog.dismiss()
+    }
+
+    fun doubleBackToExit()
+    {
+        if(doubleBackToExitPressedOnce)
+        {
+            super.onBackPressed()
+            return
+        }
+        this.doubleBackToExitPressedOnce = true
+
+        Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show()
+        
+        Handler().postDelayed({doubleBackToExitPressedOnce = false},2000)
     }
 }

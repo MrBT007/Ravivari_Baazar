@@ -1,7 +1,6 @@
-package com.example.ravivaribaazar.activities
+package com.example.ravivaribaazar.activities.ui.activities
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -11,7 +10,7 @@ import com.example.ravivaribaazar.R
 import com.example.ravivaribaazar.databinding.ActivityForgotpasswordBinding
 import com.google.firebase.auth.FirebaseAuth
 
-class ForgotPassword : baseActivity()
+class ForgotPassword : BaseActivity()
 {
     private lateinit var binding: ActivityForgotpasswordBinding
     @RequiresApi(Build.VERSION_CODES.P)

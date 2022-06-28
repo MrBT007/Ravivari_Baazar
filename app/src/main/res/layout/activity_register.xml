@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
     android:background="@color/colorWhite"
-    tools:context=".activities.RegisterActivity">
+    tools:context=".activities.ui.activities.RegisterActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_register_activity"

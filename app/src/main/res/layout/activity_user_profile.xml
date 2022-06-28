@@ -5,7 +5,7 @@
     android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.UserProfileActivity">
+    tools:context=".activities.ui.activities.UserProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_user_profile"
@@ -16,7 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <com.example.ravivaribaazar.utils.RBTextViewBold
+            android:id="@+id/tv_user_profile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -50,7 +51,7 @@
                 android:id="@+id/fl_user_image"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -135,7 +136,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email ID"
-                    android:inputType="text"
+                    android:inputType="textEmailAddress"
                     android:padding="@dimen/et_padding"
                     android:textColorHint="@color/black"
                     android:textSize="@dimen/et_text_size" />
@@ -159,7 +160,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Mobile Number"
-                    android:inputType="number"
+                    android:inputType="phone"
                     android:padding="@dimen/et_padding"
                     android:textColorHint="@color/black"
                     android:textSize="@dimen/et_text_size" />
@@ -177,7 +178,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:checkedButton="@id/male_radio_button"
                 app:layout_constraintTop_toBottomOf="@id/til_mobile_number"
-                app:layout_constraintBottom_toTopOf="@+id/btn_submint">
+                app:layout_constraintBottom_toTopOf="@+id/btn_submit">
 
                 <com.example.ravivaribaazar.utils.RBRadioButton
                     android:id="@+id/male_radio_button"
@@ -206,7 +207,7 @@
                 />
             </RadioGroup>
             <com.example.ravivaribaazar.utils.RBButton
-                android:id="@+id/btn_submint"
+                android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

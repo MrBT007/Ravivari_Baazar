@@ -1,38 +1,33 @@
-package com.example.ravivaribaazar.activities
+package com.example.ravivaribaazar.activities.ui.activities
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.KeyEvent
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import com.example.ravivaribaazar.R
-import com.example.ravivaribaazar.databinding.ActivityLoginBinding
-import com.example.ravivaribaazar.databinding.ActivitySplashBinding
-import org.w3c.dom.Text
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.widget.ThemedSpinnerAdapter
 import com.example.ravivaribaazar.MainActivity
+import com.example.ravivaribaazar.R
+import com.example.ravivaribaazar.databinding.ActivityLoginBinding
 import com.example.ravivaribaazar.firestore.FirestoreClass
 import com.example.ravivaribaazar.models.User
 import com.example.ravivaribaazar.utils.Constants
-import com.example.ravivaribaazar.utils.RBButton
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import io.grpc.LoadBalancer
+
 
 @SuppressLint("StaticFieldLeak")
 private lateinit var binding: ActivityLoginBinding
 
-class LoginActivity : baseActivity() {
+class LoginActivity : BaseActivity() {
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -71,7 +66,7 @@ class LoginActivity : baseActivity() {
         }
 
         forgotpassword.setOnClickListener{
-            startActivity(Intent(this,ForgotPassword::class.java))
+            startActivity(Intent(this, ForgotPassword::class.java))
         }
 //        binding.logintoregisterRegister.setOnClickListener()
 //        {
@@ -114,6 +109,11 @@ class LoginActivity : baseActivity() {
                         FirestoreClass().getUserDetails(this@LoginActivity)
                     } else {
                         hideProgressDialog()
+                        if(!isNetworkConnected())
+                        {
+                            showErrorSnackBar("Sorry, unable to login. Please check your internet connection.", true)
+                        }
+                        else
                         showErrorSnackBar("Incorrect Email ID or Password", true)
                     }
                 }
@@ -130,12 +130,12 @@ class LoginActivity : baseActivity() {
 
         if(user.profileCompleted == 0)
         {
-            val intent = Intent(this,UserProfileActivity::class.java)
+            val intent = Intent(this, UserProfileActivity::class.java)
             intent.putExtra(Constants.EXTRA_USER_DETAILS,user)
             startActivity(intent)
         }
         else {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, DashboardActivity::class.java))
         }
         finish()
     }
@@ -150,4 +150,9 @@ class LoginActivity : baseActivity() {
         pressedTime = System.currentTimeMillis()
     }
 
+    private fun isNetworkConnected(): Boolean {
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        return cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnected
+    }
 }

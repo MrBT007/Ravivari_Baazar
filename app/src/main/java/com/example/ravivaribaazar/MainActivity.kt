@@ -2,14 +2,11 @@ package com.example.ravivaribaazar
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.*
 import androidx.annotation.RequiresApi
-import com.example.ravivaribaazar.activities.LoginActivity
 import com.example.ravivaribaazar.databinding.ActivityMainBinding
 import com.example.ravivaribaazar.utils.Constants
 

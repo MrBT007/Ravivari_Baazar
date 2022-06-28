@@ -1,7 +1,6 @@
 package com.example.ravivaribaazar.splash
 
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,9 +9,9 @@ import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
-import com.example.ravivaribaazar.MainActivity
 import com.example.ravivaribaazar.R
-import com.example.ravivaribaazar.activities.LoginActivity
+import com.example.ravivaribaazar.activities.ui.activities.DashboardActivity
+import com.example.ravivaribaazar.activities.ui.activities.LoginActivity
 import com.example.ravivaribaazar.databinding.ActivitySplashBinding
 
 class splashActivity : AppCompatActivity() {
@@ -38,7 +37,8 @@ class splashActivity : AppCompatActivity() {
         }
         //splash time
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
-            startActivity((Intent(this@splashActivity,LoginActivity::class.java)))
+            // as of now for not logging every time simply open dashboard activity immediately after splash activity
+            startActivity((Intent(this@splashActivity, LoginActivity::class.java)))
         },2500)
 
 //       we have created a util file for a text view to apply a font (RBTextViewBold.kt)

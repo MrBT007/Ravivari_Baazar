@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/settings_drawer"
+        android:icon="@drawable/settings"
+        android:title="Settings"/>
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/about_us_drawer"
+                android:icon="@drawable/aboutus"
+                android:title="About Us"/>
+            <item
+                android:id="@+id/share_drawer"
+                android:icon="@drawable/share"
+                android:title="Share"/>
+            <item
+                android:id="@+id/rate_drawer"
+                android:icon="@drawable/rate"
+                android:title="Rate"/>
+
+        </menu>
+    </item>
+</menu>

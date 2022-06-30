@@ -8,7 +8,10 @@ import android.webkit.MimeTypeMap
 
 object Constants
 {
+    // collections
     const val USERS = "Users"
+    const val PRODUCTS = "products"
+
     const val RB_PREFERENCES = "RBPrefs"
     const val LOGGED_IN_USERNAME = "logged_in_username"
     const val EXTRA_USER_DETAILS = "extra_user_details"
@@ -26,6 +29,8 @@ object Constants
     const val IMAGE = "image"
     const val COMPLETE_PROFILE = "profileCompleted"
     const val USER_PROFILE_IMAGE = "User_profile_image"
+
+    const val PRODUCT_IMAGE = "Product_image"
 
     fun showImageChooser(activity: Activity)
     {

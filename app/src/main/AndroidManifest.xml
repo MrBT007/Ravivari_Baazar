@@ -3,6 +3,7 @@
     package="com.example.ravivaribaazar">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -13,9 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RavivariBaazar">
         <activity
-            android:name=".activities.ui.activities.SettingsActivity"
+            android:name=".activities.ui.activities.AddProductActivity"
             android:theme="@style/Theme.Design.NoActionBar"
             android:exported="false" />
+        <activity
+            android:name=".activities.ui.activities.ProfilePreviewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Design.NoActionBar" />
+        <activity
+            android:name=".activities.ui.activities.SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".activities.ui.activities.DashboardActivity"
             android:exported="false"

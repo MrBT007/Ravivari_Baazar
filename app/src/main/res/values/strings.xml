@@ -29,4 +29,15 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_profile_preview">ProfilePreviewActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    // Products
+
+    <string name="err_msg_select_product_image">Please select product image</string>
+    <string name="err_msg_enter_product_title">Please enter product title</string>
+    <string name="err_msg_enter_product_price">Please enter product price</string>
+    <string name="err_msg_enter_product_description">Please enter product description</string>
+    <string name="err_msg_enter_product_quantity">Please enter product quantity</string>
 </resources>

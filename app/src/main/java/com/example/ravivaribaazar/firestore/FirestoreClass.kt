@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
 import com.example.ravivaribaazar.activities.ui.activities.*
+import com.example.ravivaribaazar.models.Product
 import com.example.ravivaribaazar.models.User
 import com.example.ravivaribaazar.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -34,7 +35,7 @@ class FirestoreClass
             }
     }
 
-    private fun getCurrentUserID():String
+    fun getCurrentUserID():String
     {
         //Instance of current user using FirebaseAuth
         val currentUser = FirebaseAuth.getInstance().currentUser
@@ -89,6 +90,9 @@ class FirestoreClass
                     is DashboardActivity ->{
                         activity.userDetailsSuccess(user)
                     }
+                    is ProfilePreviewActivity ->{
+                        activity.userDetailsSuccess(user)
+                    }
                 }
             }
             .addOnFailureListener { e->
@@ -130,10 +134,10 @@ class FirestoreClass
             }
     }
 
-    fun uploadImageToCloudStorage(activity: Activity,imageUri:Uri?)
+    fun uploadImageToCloudStorage(activity: Activity,imageUri:Uri?, imageType:String)
     {
         val storageReference = FirebaseStorage.getInstance().reference
-            .child(Constants.USER_PROFILE_IMAGE + System.currentTimeMillis() + "."
+            .child(imageType + System.currentTimeMillis() + "."
             +Constants.getFileExtension(activity,imageUri))
 
         storageReference.putFile(imageUri!!).addOnSuccessListener { taskSnapshot ->
@@ -152,6 +156,9 @@ class FirestoreClass
                             Log.e("Yes it is UserProfileActivity",imageUri.toString() )
                             activity.imageUploadSuccess(uri.toString())
                         }
+                        is AddProductActivity->{
+                                activity.imageUploadSuccess(uri.toString())
+                        }
                     }
                 }
 
@@ -164,6 +171,20 @@ class FirestoreClass
                     }
                 }
                 Log.e(activity.javaClass.simpleName, exception.message,exception )
+            }
+    }
+
+    fun uploadProductDetails(activity: AddProductActivity, productInfo: Product)
+    {
+        mFireStore.collection(Constants.PRODUCTS)
+            .document()
+            .set(productInfo, SetOptions.merge())
+            .addOnSuccessListener { 
+                activity.productUploadSuccess()
+            }
+            .addOnFailureListener { e->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while uploading product details",e )
             }
     }
 }

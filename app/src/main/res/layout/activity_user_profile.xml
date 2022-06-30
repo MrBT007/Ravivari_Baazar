@@ -23,7 +23,7 @@
             android:gravity="center"
             android:paddingEnd="0dp"
             android:text="Complete Profile"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>

@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.activity_user_profile.iv_user_photo
 import java.io.IOException
 
 @SuppressLint("StaticFieldLeak")
-private lateinit var binding:ActivityUserProfileBinding
+private lateinit var binding: ActivityUserProfileBinding
 var mUserDetails = User()
 private var mSelectedImageUri: Uri? = null
 private var mUserProfileImageURL: String = ""
@@ -108,7 +108,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
                     if(mSelectedImageUri != null)
                     {
-                        FirestoreClass().uploadImageToCloudStorage(this, mSelectedImageUri)
+                        FirestoreClass().uploadImageToCloudStorage(this, mSelectedImageUri, Constants.USER_PROFILE_IMAGE)
                         Log.e("onCreate: ", mUserProfileImageURL )
                         if(mUserProfileImageURL.isNotEmpty()){
                             Log.e("onCreate if statement: ", mUserProfileImageURL )

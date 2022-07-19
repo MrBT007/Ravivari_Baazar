@@ -32,6 +32,8 @@ object Constants
 
     const val PRODUCT_IMAGE = "Product_image"
 
+    const val USER_ID = "user_id"
+
     fun showImageChooser(activity: Activity)
     {
         val galleryIntent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)

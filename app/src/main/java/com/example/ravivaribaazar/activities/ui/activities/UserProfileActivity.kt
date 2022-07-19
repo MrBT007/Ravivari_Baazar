@@ -124,6 +124,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
+    // From here the data uploads on Firestore
     private fun updateUserProfileDetails()
     {
         val firstName = et_first_name.text.toString().trim{ it <= ' '}

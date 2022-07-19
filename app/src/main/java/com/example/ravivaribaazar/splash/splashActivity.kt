@@ -38,7 +38,7 @@ class splashActivity : AppCompatActivity() {
         //splash time
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
             // as of now for not logging every time simply open dashboard activity immediately after splash activity
-            startActivity((Intent(this@splashActivity, LoginActivity::class.java)))
+            startActivity((Intent(this@splashActivity, DashboardActivity::class.java)))
         },2500)
 
 //       we have created a util file for a text view to apply a font (RBTextViewBold.kt)

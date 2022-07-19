@@ -33,4 +33,6 @@
     <color name="profile_photo_background">#212121</color>
 
     <color name="colorImageViewBg">#E1E1E1</color>
+
+    <color name="colorOffWhite">#F8F8F8</color>
 </resources>

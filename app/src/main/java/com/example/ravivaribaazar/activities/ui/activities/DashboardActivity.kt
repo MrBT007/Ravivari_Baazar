@@ -108,7 +108,7 @@ class DashboardActivity : BaseActivity(){
         {
             Glide.with(this)
                 .load(user.image)
-                .into(profile_image)
+                .into(profile_image!!)
         }
 
         user_name_drawer.text = "${user.firstName} ${user.lastName}"

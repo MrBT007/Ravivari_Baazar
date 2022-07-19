@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
+import androidx.fragment.app.Fragment
 import com.example.ravivaribaazar.activities.ui.activities.*
+import com.example.ravivaribaazar.activities.ui.fragments.ProductsFragment
 import com.example.ravivaribaazar.models.Product
 import com.example.ravivaribaazar.models.User
 import com.example.ravivaribaazar.utils.Constants
@@ -88,7 +90,7 @@ class FirestoreClass
                             activity.userDetailsSuccess(user)
                     }
                     is DashboardActivity ->{
-                        activity.userDetailsSuccess(user)
+                        activity.userDetailsSuccess(user!!)
                     }
                     is ProfilePreviewActivity ->{
                         activity.userDetailsSuccess(user)
@@ -179,12 +181,42 @@ class FirestoreClass
         mFireStore.collection(Constants.PRODUCTS)
             .document()
             .set(productInfo, SetOptions.merge())
-            .addOnSuccessListener { 
+            .addOnSuccessListener {
                 activity.productUploadSuccess()
             }
             .addOnFailureListener { e->
                 activity.hideProgressDialog()
                 Log.e(activity.javaClass.simpleName, "Error while uploading product details",e )
+            }
+    }
+
+    // get products from the firestore
+    fun getProductList(fragment:Fragment)
+    {
+        mFireStore.collection(Constants.PRODUCTS)
+            .whereEqualTo(Constants.USER_ID,getCurrentUserID())
+            .get()
+            .addOnSuccessListener {document->
+                Log.e("Product List",document.documents.toString())
+
+                val productsList: ArrayList<Product> = ArrayList()
+
+                // assign products its id
+                for(i in document.documents)
+                {
+                    val product = i.toObject(Product::class.java)
+                    product!!.product_id = i.id
+
+                    // add product in our product list
+                    productsList.add(product)
+                }
+
+                when(fragment)
+                {
+                    is ProductsFragment ->{
+                        fragment.successProductsListFromFirestore(productsList)
+                    }
+                }
             }
     }
 }

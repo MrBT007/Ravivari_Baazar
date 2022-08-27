@@ -7,6 +7,7 @@ import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.ravivaribaazar.activities.ui.activities.*
+import com.example.ravivaribaazar.activities.ui.fragments.DashboardFragment
 import com.example.ravivaribaazar.activities.ui.fragments.ProductsFragment
 import com.example.ravivaribaazar.models.Product
 import com.example.ravivaribaazar.models.User
@@ -217,6 +218,32 @@ class FirestoreClass
                         fragment.successProductsListFromFirestore(productsList)
                     }
                 }
+            }
+    }
+
+    fun getDashboardItemsList(fragment: Fragment)
+    {
+        mFireStore.collection(Constants.PRODUCTS)
+            .get()
+            .addOnSuccessListener { document->
+                Log.e(fragment.javaClass.simpleName, document.documents.toString() )
+
+                val productsList = ArrayList<Product>()
+                for(i in document.documents)
+                {
+                    val product = i.toObject(Product::class.java)
+                    product!!.product_id = i.id
+                    productsList.add(product)
+                }
+                when(fragment)
+                {
+                    is DashboardFragment ->{
+                        fragment.successDashboardItemsList(productsList)
+                    }
+                }
+            }
+            .addOnFailureListener { e->
+                Log.e(fragment.javaClass.simpleName, "Error while getting dashboard items list",e)
             }
     }
 }

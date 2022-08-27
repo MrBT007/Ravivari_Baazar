@@ -1,6 +1,7 @@
 package com.example.ravivaribaazar.activities.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -8,11 +9,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.ravivaribaazar.R
 import com.example.ravivaribaazar.activities.ui.activities.DashboardActivity
 import com.example.ravivaribaazar.databinding.FragmentDashboardBinding
+import com.example.ravivaribaazar.firestore.FirestoreClass
+import com.example.ravivaribaazar.models.Product
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_dashboard.view.*
 
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : BaseFragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
@@ -33,9 +36,14 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        textView.text = "This is dashboard Fragment"
+        val textView: TextView = binding.noDashboardItemsFound
+        textView.text = "No Items Found Yet!!"
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getDashboardItemsList()
     }
 
     override fun onDestroyView() {
@@ -43,4 +51,18 @@ class DashboardFragment : Fragment() {
         _binding = null
     }
 
+    fun successDashboardItemsList(dashboardItemsList:ArrayList<Product>)
+    {
+        hideProgressDialog()
+        for(i in dashboardItemsList)
+        {
+            Log.i("Item Title",i.title)
+        }
+    }
+
+    fun getDashboardItemsList()
+    {
+        showProgressDialog(resources.getString((R.string.please_wait)))
+        FirestoreClass().getDashboardItemsList(this)
+    }
 }

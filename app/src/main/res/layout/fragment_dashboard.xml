@@ -6,8 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".activities.ui.fragments.DashboardFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_dashboard_items"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/text_dashboard"
+        android:id="@+id/no_dashboard_items_found"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

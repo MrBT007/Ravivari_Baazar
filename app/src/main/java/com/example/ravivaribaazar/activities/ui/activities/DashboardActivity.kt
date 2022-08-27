@@ -20,6 +20,8 @@ import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.sliding_drawer.*
 
+// TODO: Toolbar disappears by Fragments whenever implement recycler view (or maybe another view also) into Fragments
+
 class DashboardActivity : BaseActivity(){
 
     private lateinit var binding: ActivityDashboardBinding
@@ -28,6 +30,7 @@ class DashboardActivity : BaseActivity(){
         super.onCreate(savedInstanceState)
 
         // for drawer image, name and id
+        showProgressDialog(resources.getString(R.string.please_wait))
         getUserDetails()
 
         binding = ActivityDashboardBinding.inflate(layoutInflater)
@@ -102,16 +105,21 @@ class DashboardActivity : BaseActivity(){
 
     fun userDetailsSuccess(user: User)
     {
-
-//         TODO: Solve error occurs while loading image to circular image view
         if(user.image != null)
         {
             Glide.with(this)
                 .load(user.image)
                 .into(profile_image!!)
         }
+        else
+        {
+            Glide.with(this)
+                .load(R.drawable.user_profile_default)
+                .into(profile_image!!)
+        }
 
         user_name_drawer.text = "${user.firstName} ${user.lastName}"
         user_id_drawer.text = user.email
+        hideProgressDialog()
     }
 }

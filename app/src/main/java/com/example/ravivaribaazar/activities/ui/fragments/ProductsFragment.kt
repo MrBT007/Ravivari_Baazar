@@ -7,9 +7,11 @@ import android.view.*
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ravivaribaazar.R
 import com.example.ravivaribaazar.activities.ui.activities.AddProductActivity
 import com.example.ravivaribaazar.activities.ui.activities.DashboardActivity
+import com.example.ravivaribaazar.activities.ui.adapters.MyProductsListAdapter
 import com.example.ravivaribaazar.databinding.FragmentProductsBinding
 import com.example.ravivaribaazar.firestore.FirestoreClass
 import com.example.ravivaribaazar.models.Product
@@ -71,7 +73,7 @@ class ProductsFragment : BaseFragment() {
     }
 
     // get products from firestore
-    fun getProductListFromFirestore()
+    private fun getProductListFromFirestore()
     {
         showProgressDialog(resources.getString(R.string.please_wait))
         FirestoreClass().getProductList(this)
@@ -86,10 +88,20 @@ class ProductsFragment : BaseFragment() {
     fun successProductsListFromFirestore(productsList:ArrayList<Product>)
     {
         hideProgressDialog()
-
-        for(i in productsList)
+        if(productsList.size>0)
         {
-            Log.i("Product name",i.title)
+            rv_my_products_items.visibility = View.VISIBLE
+            no_products_found.visibility = View.GONE
+
+            rv_my_products_items.layoutManager = LinearLayoutManager(activity)
+            rv_my_products_items.setHasFixedSize(true)
+            val productsAdapter = MyProductsListAdapter(requireActivity(),productsList)
+            rv_my_products_items.adapter = productsAdapter
+        }
+        else
+        {
+            rv_my_products_items.visibility = View.GONE
+            no_products_found.visibility = View.VISIBLE
         }
     }
 }

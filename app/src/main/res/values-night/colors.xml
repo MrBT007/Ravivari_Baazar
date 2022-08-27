@@ -22,5 +22,5 @@
     <color name="secondaryFontGender" tools:ignore="MissingDefaultResource">#989898</color>
     <color name="radioButtonSelected">#FFFFFF</color>
 
-    <color name="colorOffWhite">#282828</color>
+    <color name="colorOffWhite">#070707</color>
 </resources>

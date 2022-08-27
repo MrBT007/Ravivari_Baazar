@@ -90,7 +90,7 @@ class FirestoreClass
                             activity.userDetailsSuccess(user)
                     }
                     is DashboardActivity ->{
-                        activity.userDetailsSuccess(user!!)
+                        activity.userDetailsSuccess(user)
                     }
                     is ProfilePreviewActivity ->{
                         activity.userDetailsSuccess(user)

@@ -146,17 +146,16 @@ class FirestoreClass
         storageReference.putFile(imageUri!!).addOnSuccessListener { taskSnapshot ->
 
             // Image upload is success
-            Log.e("Firebase Image URL",
-            taskSnapshot.metadata!!.reference!!.downloadUrl.toString())
+//            Log.e("Firebase Image URL",
+//            taskSnapshot.metadata!!.reference!!.downloadUrl.toString())
 
             // get the downloadable url from the task snapshot
             taskSnapshot.metadata!!.reference!!.downloadUrl
                 .addOnSuccessListener { uri ->
-                    Log.e("Downloadable Image URL ",uri.toString() )
+//                    Log.e("Downloadable Image URL ",uri.toString() )
                     when(activity)
                     {
                         is UserProfileActivity -> {
-                            Log.e("Yes it is UserProfileActivity",imageUri.toString() )
                             activity.imageUploadSuccess(uri.toString())
                         }
                         is AddProductActivity->{
@@ -198,7 +197,7 @@ class FirestoreClass
             .whereEqualTo(Constants.USER_ID,getCurrentUserID())
             .get()
             .addOnSuccessListener {document->
-                Log.e("Product List",document.documents.toString())
+//                Log.e("Product List",document.documents.toString())
 
                 val productsList: ArrayList<Product> = ArrayList()
 
@@ -226,7 +225,7 @@ class FirestoreClass
         mFireStore.collection(Constants.PRODUCTS)
             .get()
             .addOnSuccessListener { document->
-                Log.e(fragment.javaClass.simpleName, document.documents.toString() )
+//                Log.e(fragment.javaClass.simpleName, document.documents.toString() )
 
                 val productsList = ArrayList<Product>()
                 for(i in document.documents)

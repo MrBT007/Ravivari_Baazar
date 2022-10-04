@@ -20,8 +20,6 @@ import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.sliding_drawer.*
 
-// TODO: Toolbar disappears by Fragments whenever implement recycler view (or maybe another view also) into Fragments
-
 class DashboardActivity : BaseActivity(){
 
     private lateinit var binding: ActivityDashboardBinding

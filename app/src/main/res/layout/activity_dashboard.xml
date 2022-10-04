@@ -7,12 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".activities.ui.activities.DashboardActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/drawer_nav_view"
+        app:headerLayout="@layout/sliding_drawer"
+        app:menu="@menu/drawer_menu"
+        app:insetForeground="@null"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"/>
+
+    <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_dashboard_fragment"
             android:layout_width="match_parent"
@@ -38,15 +47,13 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_view"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
             android:background="?android:attr/windowBackground"
             app:itemIconTint="@drawable/bottom_navigation_selector"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:layout_alignParentBottom="true"
             app:menu="@menu/bottom_nav_menu" />
 
         <fragment
@@ -54,22 +61,10 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@id/nav_view"
+            android:layout_below="@id/toolbar_dashboard_fragment"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@id/nav_view"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/mobile_navigation" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/drawer_nav_view"
-        app:headerLayout="@layout/sliding_drawer"
-        app:menu="@menu/drawer_menu"
-        app:insetForeground="@null"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"/>
+    </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

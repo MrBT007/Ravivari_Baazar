@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -95,7 +97,7 @@ class ProductsFragment : BaseFragment() {
 
             rv_my_products_items.layoutManager = LinearLayoutManager(activity)
             rv_my_products_items.setHasFixedSize(true)
-            val productsAdapter = MyProductsListAdapter(requireActivity(),productsList)
+            val productsAdapter = MyProductsListAdapter(requireActivity(),productsList,this)
             rv_my_products_items.adapter = productsAdapter
         }
         else
@@ -103,5 +105,40 @@ class ProductsFragment : BaseFragment() {
             rv_my_products_items.visibility = View.GONE
             no_products_found.visibility = View.VISIBLE
         }
+    }
+
+    private fun showAlertDialogToDeleteProduct(productID: String)
+    {
+        val builder = AlertDialog.Builder(requireActivity())
+        builder.setTitle("Delete")
+        builder.setMessage("Are you sure you want to delete the product?")
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+        builder.setPositiveButton("Yes") { dialogInterface, _ ->
+            showProgressDialog(resources.getString(R.string.please_wait))
+            FirestoreClass().deleteProduct(this,productID)
+            dialogInterface.dismiss()
+        }
+
+        builder.setNegativeButton("No"){dialogInterface,_ ->
+            dialogInterface.dismiss()
+        }
+
+        val alertDialog:AlertDialog = builder.create()
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+    }
+
+    fun deleteProduct(productID:String)
+    {
+//        Toast.makeText(requireContext(), "You can delete the product. $productID", Toast.LENGTH_SHORT).show()
+        showAlertDialogToDeleteProduct(productID)
+    }
+
+    fun productDeleteSuccess()
+    {
+        hideProgressDialog()
+        Toast.makeText(requireActivity(),"Your product was deleted successfully", Toast.LENGTH_SHORT).show()
+        getProductListFromFirestore()
     }
 }

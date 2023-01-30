@@ -28,13 +28,15 @@
     </LinearLayout>
     
     <LinearLayout
+        android:id="@+id/ll_product_details"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/item_image_title_price_marginStart"
+        android:layout_marginEnd="@dimen/item_image_title_price_marginStart"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ib_delete_product"
         app:layout_constraintStart_toEndOf="@+id/ll_my_item_image"
         app:layout_constraintTop_toTopOf="parent">
         
@@ -66,4 +68,17 @@
             android:textSize="@dimen/rv_item_price_textSize"
             android:text="Description"/>
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ib_delete_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:padding="5dp"
+        android:src="@drawable/ic_baseline_delete_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ll_product_details"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
